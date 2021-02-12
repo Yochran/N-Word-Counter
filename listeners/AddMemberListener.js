@@ -13,6 +13,9 @@ module.exports = {
 
         try {
             members.NewMember = 1;
+            const newKey = msg.author.id;
+            members[newKey] = members["NewMember"];
+            delete members["NewMember"];
             fs.writeFile("stats.json", JSON.stringify(stats, null, 2), function writeJSON(err) {
                 if (err) {
                     console.log(this.getTime() + " [N-Word Counter]: There was a utility error when writing to a file. (Trigger, NWordListener.js.)");
