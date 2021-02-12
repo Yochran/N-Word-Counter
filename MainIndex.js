@@ -60,35 +60,34 @@ bot.on("message", (msg) => {
 
         const args = msg.content.slice(1).trim().split(" ");
         const command = args.shift().toLowerCase();
-    
-        if (!commands.includes(command)) {
-            Utils.logMessage(msg.author.username + " tried to run a command that doesnt exist. (" + command + ").");
-            msg.channel.send(new MessageEmbed()
-            .setTitle("**Invalid Command**")
-            .setDescription("That command does not exist. `.help` for a list of commands.")
-            .setFooter(config.Footer)
-            .setColor(config.EmbedColor));
-        } else {
-            switch (command) {
-                case "help":
-                    HelpCommand.Execute(msg);
-                    break;
-                case "counter":
-                case "count":
-                    CountCommand.Execute(msg, args);
-                    break;
-            }
-            Utils.logMessage(msg.author.username + " ran a command. (" + command + ").");
+
+        switch (command) {
+            case "help":
+                HelpCommand.Execute(msg);
+                Utils.logMessage(msg.author.username + " ran a command. (" + command + ").");
+                break;
+            case "counter":
+            case "count":
+                CountCommand.Execute(msg, args);
+                Utils.logMessage(msg.author.username + " ran a command. (" + command + ").");
+                break;
+            
         }
     } else {
         if (msg.author.bot) return;
 
+        var hardR = false;
+
         if (msg.content.toLowerCase().includes("nigger") || msg.content.toLowerCase().includes("nigga")) {
             if (!immune.includes(msg.author.id)) {
+                if (msg.content.toLowerCase().includes("nigger")) {
+                    hardR = true;
+                }
+
                 if (!stats.Members.hasOwnProperty(msg.author.id)) {
-                    AddMemberListener.Trigger(msg);
+                    AddMemberListener.Trigger(msg, hardR);
                 } else {
-                    NWordListener.Trigger(msg);
+                    NWordListener.Trigger(msg, hardR);
                 }
             }
         }

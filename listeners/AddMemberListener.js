@@ -8,11 +8,21 @@ const Utils = require("../utils/Utils");
 const fs = require("fs");
 
 module.exports = {
-    Trigger: function(msg) {
+    Trigger: function(msg, hardR) {
         const members = stats.Members;
 
         try {
-            members.NewMember = 1;
+            if (hardR) {
+                members.NewMember = [
+                    1,
+                    1
+                ];
+            } else {
+                members.NewMember = [
+                    1,
+                    0
+                ];
+            }
             const newKey = msg.author.id;
             members[newKey] = members["NewMember"];
             delete members["NewMember"];
