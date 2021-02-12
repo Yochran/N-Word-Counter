@@ -1,0 +1,16 @@
+{
+    "Token" : "HIDDEN",
+    "Prefix" : ".",
+    "Footer" : "N-Word Counter by Yochran.",
+    "EmbedColor" : "RED",
+
+    "Commands" : [
+        "Help",
+        "Count",
+        "Counter"
+    ],
+
+    "Immune" : [
+        "809628306336383088"
+    ]
+}
