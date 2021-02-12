@@ -22,9 +22,17 @@ module.exports = {
                 }
             }
 
+            if (!hardRAmount) {
+                hardRAmount = 0;
+            }
+
+            if (!totalAmount) {
+                totalAmount = 0;
+            }
+
             msg.channel.send(new MessageEmbed()
             .setTitle("**" + msg.author.username + "'s N-Word Counter:**")
-            .setDescription(`**Your N-Word count is:** ${totalAmount}\n**Your** **__Hard-R__** **count is:** ${hardRAmount}`)
+            .setDescription(`**Your N-Word count is:** ${totalAmount}.\n**Your** **__Hard-R__** **count is:** ${hardRAmount}.`)
             .setFooter(config.Footer)
             .setColor(config.EmbedColor));
         } else if (args.length === 1) {
@@ -48,9 +56,17 @@ module.exports = {
                     }
                 }
 
+                if (!hardRAmount) {
+                    hardRAmount = 0;
+                }
+    
+                if (!totalAmount) {
+                    totalAmount = 0;
+                }
+
                 msg.channel.send(new MessageEmbed()
                 .setTitle("**" + member.user.username + "'s N-Word Counter:**")
-                .setDescription(`**<@${member.id}>'s N-Word count is:** ${totalAmount}.\n**<@${member.id}>'s** **__Hard-R__** **count is:** ${hardRAmount}`)
+                .setDescription(`**<@${member.id}>'s N-Word count is:** ${totalAmount}.\n**<@${member.id}>'s** **__Hard-R__** **count is:** ${hardRAmount}.`)
                 .setFooter(config.Footer)
                 .setColor(config.EmbedColor));
             }
