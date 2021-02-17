@@ -81,19 +81,28 @@ bot.on("message", (msg) => {
     } else {
         if (msg.author.bot) return;
 
-        var hardR = false;
+        const args = msg.content.slice(0).trim().split(" ");
 
         if (msg.content.toLowerCase().includes("nigger") || msg.content.toLowerCase().includes("nigga")) {
             const server = msg.guild.name;
             if (!immune.includes(msg.author.id)) {
-                if (msg.content.toLowerCase().includes("nigger")) {
-                    hardR = true;
+                var totalAmount = 0;
+                var hardRAmount = 0;
+                for (var word in args) {
+                    console.log(args[word]);
+                    if (args[word].toLowerCase() === "nigga" || args[word].toLowerCase() === "nigger") {
+                        totalAmount++;
+                    } 
+
+                    if (args[word].toLowerCase() === "nigger") {
+                        hardRAmount++;
+                    }
                 }
 
                 if (!stats.Members.hasOwnProperty(msg.author.id) || !stats.Members[msg.author.id][server]) {
-                    AddMemberListener.Trigger(msg, server, hardR);
+                    AddMemberListener.Trigger(msg, server, totalAmount, hardRAmount);
                 } else {
-                    NWordListener.Trigger(msg, server, hardR);
+                    NWordListener.Trigger(msg, server, totalAmount, hardRAmount);
                 }
             }
         }
