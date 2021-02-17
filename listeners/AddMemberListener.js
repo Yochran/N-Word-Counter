@@ -12,6 +12,7 @@ module.exports = {
         const members = stats.Members;
         const selected = msg.author.id;
 
+        try {
             if (!members[selected]) {
                 members.NewMember = {
                     NewServer : [
@@ -44,5 +45,8 @@ module.exports = {
                     console.log(this.getTime() + " [N-Word Counter]: There was a utility error when writing to a file. (Trigger, NWordListener.js.)");
                 }
             });
+        } catch (err) {
+            Utils.logError("Error while writing to stats file. (AddMemberListener, Trigger).");
+        }
     }
 }

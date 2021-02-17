@@ -89,7 +89,6 @@ bot.on("message", (msg) => {
                 var totalAmount = 0;
                 var hardRAmount = 0;
                 for (var word in args) {
-                    console.log(args[word]);
                     if (args[word].toLowerCase() === "nigga" || args[word].toLowerCase() === "nigger") {
                         totalAmount++;
                     } 
