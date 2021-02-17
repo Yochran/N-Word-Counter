@@ -18,8 +18,8 @@ A Simple N Word counter bot in JavaScript.
   "Members": {
     "ID-Of-Member-Here": {
       "Server-Name": [
-        "Total Count (Integer)",
-        "Hard-R Count (Integer)"
+        0,
+        0
       ]
     }
   }
