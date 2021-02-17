@@ -10,6 +10,7 @@ const HelpCommand = require("./commands/HelpCommand");
 const NWordListener = require("./listeners/NWordListener");
 const CountCommand = require("./commands/CountCommand");
 const AddMemberListener = require("./listeners/AddMemberListener");
+const ResetCommand = require("./commands/ResetCommand");
 
 var commands = [];
 var immune = [];
@@ -64,14 +65,18 @@ bot.on("message", (msg) => {
         switch (command) {
             case "help":
                 HelpCommand.Execute(msg);
-                Utils.logMessage(msg.author.username + " ran a command. (" + command + ").");
                 break;
             case "counter":
             case "count":
                 CountCommand.Execute(msg, args);
-                Utils.logMessage(msg.author.username + " ran a command. (" + command + ").");
                 break;
-            
+            case "reset":
+                ResetCommand.Execute(msg, args);
+                break;
+        }
+
+        if (commands.includes(commands)) {
+            Utils.logMessage(msg.author.username + " ran a command. (" + command + ").");
         }
     } else {
         if (msg.author.bot) return;
@@ -79,15 +84,16 @@ bot.on("message", (msg) => {
         var hardR = false;
 
         if (msg.content.toLowerCase().includes("nigger") || msg.content.toLowerCase().includes("nigga")) {
+            const server = msg.guild.name;
             if (!immune.includes(msg.author.id)) {
                 if (msg.content.toLowerCase().includes("nigger")) {
                     hardR = true;
                 }
 
-                if (!stats.Members.hasOwnProperty(msg.author.id)) {
-                    AddMemberListener.Trigger(msg, hardR);
+                if (!stats.Members.hasOwnProperty(msg.author.id) || !stats.Members[msg.author.id][server]) {
+                    AddMemberListener.Trigger(msg, server, hardR);
                 } else {
-                    NWordListener.Trigger(msg, hardR);
+                    NWordListener.Trigger(msg, server, hardR);
                 }
             }
         }

@@ -9,6 +9,7 @@ const Utils = require("../utils/Utils");
 
 module.exports = {
     Execute: function(msg, args) {
+        const server = msg.guild.name;
         if (args.length === 0) {
             let totalAmount;
             let hardRAmount;
@@ -16,8 +17,8 @@ module.exports = {
             for (var selected in members) {
                 if (members.hasOwnProperty(selected)) {
                     if (selected === msg.author.id) {
-                        totalAmount = members[selected][0];
-                        hardRAmount = members[selected][1];
+                        totalAmount = members[selected][server][0];
+                        hardRAmount = members[selected][server][1];
                     }
                 }
             }
@@ -50,8 +51,8 @@ module.exports = {
                 for (var selected in members) {
                     if (members.hasOwnProperty(selected)) {
                         if (selected === member.id) {
-                            totalAmount = members[selected][0];
-                            hardRAmount = members[selected][1];
+                            totalAmount = members[selected][server][0];
+                            hardRAmount = members[selected][server][1];
                         }
                     }
                 }
