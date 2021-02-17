@@ -10,3 +10,13 @@ A Simple N Word counter bot in JavaScript.
 
 ### Library:
   - Alongside my decision to make a Java Spigot Utility Library for Minecraft development, I'm considering making a JavaScript Discord Utils Library as well, and it will contain features of my Utils class in this bot, and more. You should be able to install it using `npm install DiscordUtils.js` when it releases, if I can reserve that repository name.
+
+```json
+{
+  "Test" : [
+    0,
+    1,
+    "Bruh"
+  ]
+}
+```
