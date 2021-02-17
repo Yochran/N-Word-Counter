@@ -1,34 +1,22 @@
 const Discord = require("discord.js");
-const bot = new Discord.Client();
 
 const config = require("../config.json");
 const stats = require("../stats.json");
 
 const { MessageEmbed } = require("discord.js");
-const Utils = require("../utils/Utils");
 
 module.exports = {
     Execute: function(msg, args) {
+        const members = stats.Members;
         const server = msg.guild.name;
+        const selected = msg.author.id;
         if (args.length === 0) {
-            let totalAmount;
-            let hardRAmount;
-            var members = stats.Members;
-            for (var selected in members) {
-                if (members.hasOwnProperty(selected)) {
-                    if (selected === msg.author.id) {
-                        totalAmount = members[selected][server][0];
-                        hardRAmount = members[selected][server][1];
-                    }
-                }
-            }
+            var totalAmount = 0;
+            var hardRAmount = 0;
 
-            if (!hardRAmount) {
-                hardRAmount = 0;
-            }
-
-            if (!totalAmount) {
-                totalAmount = 0;
+            if (members[selected][server] && members[selected]) {
+                totalAmount = members[selected][server][0];
+                hardRAmount = members[selected][server][1];
             }
 
             msg.channel.send(new MessageEmbed()
@@ -45,24 +33,12 @@ module.exports = {
                 .setFooter(config.Footer)
                 .setColor(config.EmbedColor));
             } else {
-                let totalAmount;
-                let hardRAmount;
-                var members = stats.Members;
-                for (var selected in members) {
-                    if (members.hasOwnProperty(selected)) {
-                        if (selected === member.id) {
-                            totalAmount = members[selected][server][0];
-                            hardRAmount = members[selected][server][1];
-                        }
-                    }
-                }
+                let totalAmount = 0;
+                let hardRAmount = 0;
 
-                if (!hardRAmount) {
-                    hardRAmount = 0;
-                }
-    
-                if (!totalAmount) {
-                    totalAmount = 0;
+                if (members[member.id] && members[member.id][server]) {
+                    totalAmount = members[member.id][server][0];
+                    hardRAmount = members[member.id][server][1];
                 }
 
                 msg.channel.send(new MessageEmbed()
