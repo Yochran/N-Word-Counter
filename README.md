@@ -4,6 +4,7 @@ A Simple N Word counter bot in JavaScript.
 ### Commands:
   - .help
   - .counter [member]
+  - .reset <member>
   
 ### Listeners:
   - Message listener that checks if a message contains "nigger" or "nigga". If it does itll either A: Add the member to the stats file and set their count as 1, or add to their current count if they already exist.
