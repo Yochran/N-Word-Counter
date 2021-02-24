@@ -5,7 +5,6 @@ const config = require("./config.json");
 const Utils = require("./utils/Utils");
 const stats = require("./stats.json");
 
-const { MessageEmbed } = require("discord.js");
 const HelpCommand = require("./commands/HelpCommand");
 const NWordListener = require("./listeners/NWordListener");
 const CountCommand = require("./commands/CountCommand");
@@ -89,11 +88,11 @@ bot.on("message", (msg) => {
                 var totalAmount = 0;
                 var hardRAmount = 0;
                 for (var word in args) {
-                    if (args[word].toLowerCase() === "nigga" || args[word].toLowerCase() === "nigger") {
+                    if (args[word].toLowerCase().includes("nigga") || args[word].toLowerCase().includes("nigger")) {
                         totalAmount++;
                     } 
 
-                    if (args[word].toLowerCase() === "nigger") {
+                    if (args[word].toLowerCase().includes("nigger")) {
                         hardRAmount++;
                     }
                 }
